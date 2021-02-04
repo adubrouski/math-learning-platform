@@ -10,7 +10,7 @@ const Auth = ({ setAuthVisible }) => {
     <div className="auth">
       {isRegister ? (
         <RegisterWindow
-          setPopUpVisible={setAuthVisible}
+          setAuthVisible={setAuthVisible}
           title="Зарегистрируйтесь"
           isRegister={isRegister}
           switchText="Уже зарегистрированы? Войти"

@@ -26,7 +26,13 @@ const LoginWindow = ({ title, setRegister, isRegister, switchText, setAuthVisibl
 
   const onSubmit = (e, values) => {
     e.preventDefault();
-    console.log(values);
+    fetch('api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(values),
+    });
     setAuthVisible(false);
   };
 

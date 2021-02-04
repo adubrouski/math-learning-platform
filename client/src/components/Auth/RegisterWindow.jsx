@@ -30,7 +30,13 @@ const RegisterWindow = ({ title, setRegister, isRegister, switchText, setAuthVis
 
   const onSubmit = (e, values) => {
     e.preventDefault();
-    console.log(values);
+    fetch('api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(values),
+    });
     setAuthVisible(false);
   };
 
