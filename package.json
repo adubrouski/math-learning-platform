@@ -1,0 +1,23 @@
+{
+  "name": "math-learning-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Online math learning using MERN stack",
+  "main": "index.js",
+  
+  "scripts": {
+    "client": "npm run start --prefix client",
+    "server": "npm run server --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+
+  },
+  "keywords": [
+    "React",
+    "NodeJS",
+    "ExpressJS",
+    "MongoDB",
+    "SPA"
+  ],
+  "author": "Anton Dubrouski <adubrouski@yandex.by>",
+  "license": "ISC"
+}

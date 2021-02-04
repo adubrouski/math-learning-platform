@@ -1,0 +1,48 @@
+.exams
+  width: 65%
+  height: 100%
+  margin: 0 auto
+  padding: 60px 0 400px 0
+  animation: exams .5s
+  position: relative
+  @keyframes exams
+    0%
+      top: 50px
+    100%
+      top: 0px
+  &__title
+    font-size: 50px
+    text-align: center
+    color: #787878
+  &__content
+    margin-top: 100px
+  &__list
+    list-style: none
+    &-item
+      position: relative
+      margin-top: 15px
+      font-size: 30px
+      &:first-child
+        margin-top: 0
+  &__tick::after
+    content: ""
+    position: absolute
+    right: 0
+    top: 0
+    display: block
+    height: 100%
+    width: 40px
+    background-image: url(../../assets/img/tests/tick.svg)
+    background-repeat: no-repeat
+    background-size: contain
+  &__cross::after
+    content: ""
+    position: absolute
+    right: 5px
+    top: 0
+    display: block
+    height: 100%
+    width: 30px
+    background-image: url(../../assets/img/tests/cross.svg)
+    background-repeat: no-repeat
+    background-size: contain
