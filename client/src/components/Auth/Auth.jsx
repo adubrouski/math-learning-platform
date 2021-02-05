@@ -19,7 +19,7 @@ const Auth = ({ setAuthVisible }) => {
       ) : (
         <LoginWindow
           setAuthVisible={setAuthVisible}
-          title="Войдите в сисетму"
+          title="Войдите в систему"
           isRegister={isRegister}
           switchText="Ещё не зарегистрированы? Зарегистрироваться"
           setRegister={() => setRegister(true)}

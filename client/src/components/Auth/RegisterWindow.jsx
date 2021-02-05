@@ -22,7 +22,11 @@ const RegisterWindow = ({ title, setRegister, isRegister, switchText, setAuthVis
     password: Yup.string()
       .min(6, 'Минимальная длина пароля - 6 символов')
       .max(40, 'Максимальная длина пароля - 40 символов')
-      .required('Это поле обязательно для заполнения'),
+      .required('Это поле обязательно для заполнения')
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/,
+        'Пароль должен состоять из заглавных и строчных букв латинского алфавита, а также цифр 0-9',
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать')
       .required('Это поле обязательно для заполнения'),

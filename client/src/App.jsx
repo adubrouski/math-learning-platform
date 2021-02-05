@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { Header, Menu } from './components';
-import { Home, Theory, Classroom, Tests } from './pages';
+import { Home, Topics, Classroom, Tests } from './pages';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/theory" exact component={Theory} />
+              <Route path="/theory" exact component={Topics} />
               <Route path="/classroom" exact component={Classroom} />
               <Route path="/tests" exact component={Tests} />
               <Redirect to="/" />
