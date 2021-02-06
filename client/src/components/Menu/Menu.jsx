@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import Auth from '../Auth/Auth';
 import PopUpMenu from './PopUpMenu';
 
 import {
@@ -15,13 +13,8 @@ import {
 
 const Menu = () => {
   const [isPopUpVisible, setPopUpVisible] = React.useState(false);
-  const [isAuthVisible, setAuthVisible] = React.useState(false);
 
-  const authClickHandler = () => {
-    setAuthVisible(true);
-  };
-
-  const iconsClickHandler = () => {
+  const iconClickHandler = () => {
     setPopUpVisible(!isPopUpVisible);
   };
 
@@ -34,9 +27,6 @@ const Menu = () => {
         !classes.contains('popup__menu-auth')
       ) {
         setPopUpVisible(false);
-      }
-      if (classes.contains('auth') || classes.contains('auth__cross')) {
-        setAuthVisible(false);
         document.removeEventListener('click', foo);
       }
     };
@@ -45,7 +35,6 @@ const Menu = () => {
 
   return (
     <>
-      {isAuthVisible ? <Auth setAuthVisible={setAuthVisible} /> : null}
       <div className="menu">
         <>
           <Link to="/">
@@ -53,7 +42,7 @@ const Menu = () => {
               <img src={logoIcon} alt="logo" />
             </div>
           </Link>
-          <div className="menu__icon" onClick={iconsClickHandler}>
+          <div className="menu__icon" onClick={iconClickHandler}>
             <img src={manIcon} className="man-icon" alt="logo" />
           </div>
           <Link to="/">
@@ -66,18 +55,18 @@ const Menu = () => {
               <img src={teacherIcon} alt="icon" />
             </div>
           </Link>
-          <Link to="/theory">
+          <Link to="/topics">
             <div className="menu__icon">
               <img src={bookIcon} alt="icon" />
             </div>
           </Link>
-          <Link to="/tests">
+          <Link to="/exams">
             <div className="menu__icon">
               <img src={clipboardIcon} alt="icon" />
             </div>
           </Link>
         </>
-        {isPopUpVisible ? <PopUpMenu authClickHandler={authClickHandler} /> : null}
+        {isPopUpVisible ? <PopUpMenu /> : null}
       </div>
     </>
   );

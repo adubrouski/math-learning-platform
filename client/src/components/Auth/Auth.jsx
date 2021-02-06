@@ -1,30 +1,23 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import LoginWindow from './LoginWindow';
 import RegisterWindow from './RegisterWindow';
 
-const Auth = ({ setAuthVisible }) => {
-  const [isRegister, setRegister] = React.useState(false);
-
+const Auth = () => {
+  const history = useHistory();
   return (
     <div className="auth">
-      {isRegister ? (
-        <RegisterWindow
-          setAuthVisible={setAuthVisible}
-          title="Зарегистрируйтесь"
-          isRegister={isRegister}
-          switchText="Уже зарегистрированы? Войти"
-          setRegister={() => setRegister(false)}
-        />
-      ) : (
+      {history.location.pathname === '/login' ? (
         <LoginWindow
-          setAuthVisible={setAuthVisible}
           title="Войдите в систему"
-          isRegister={isRegister}
           switchText="Ещё не зарегистрированы? Зарегистрироваться"
-          setRegister={() => setRegister(true)}
         />
-      )}
+      ) : null}
+      {history.location.pathname === '/register' ? (
+        <RegisterWindow title="Зарегистрируйтесь" switchText="Уже зарегистрированы? Войти" />
+      ) : null}
     </div>
   );
 };

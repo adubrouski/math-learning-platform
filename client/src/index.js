@@ -7,6 +7,7 @@ import store from './redux/store';
 
 import 'normalize.css';
 import './sass/app.sass';
+import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App';
 

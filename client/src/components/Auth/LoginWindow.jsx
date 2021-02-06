@@ -1,18 +1,27 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
-import http from '../../services/httpService';
 
-import RegisterWindow from './RegisterWindow';
+import http from '../../services/httpService';
 
 import crossImg from '../../assets/img/tests/cross.svg';
 
-const LoginWindow = ({ title, setRegister, isRegister, switchText, setAuthVisible }) => {
+const LoginWindow = ({ title, switchText }) => {
+  const history = useHistory();
+  const toRegister = () => {
+    history.push('/register');
+  };
+  const toHome = () => {
+    history.push('/home');
+  };
+
   const initialValues = {
     email: '',
     password: '',
   };
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email('Некорректный email')
@@ -21,10 +30,6 @@ const LoginWindow = ({ title, setRegister, isRegister, switchText, setAuthVisibl
     password: Yup.string()
       .min(6, 'Минимальная длина пароля - 6 символов')
       .max(40, 'Максимальная длина пароля - 40 символов')
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/,
-        'Пароль должен состоять из заглавных и строчных букв латинского алфавита, а также цифр 0-9',
-      )
       .required('Это поле обязательно для заполнения'),
   });
 
@@ -32,22 +37,14 @@ const LoginWindow = ({ title, setRegister, isRegister, switchText, setAuthVisibl
     e.preventDefault();
     try {
       await http.post('/auth/login', values);
-    } catch (e) {}
-    /* fetch('http://localhost:5000/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(values),
-    });
-    setAuthVisible(false); */
+    } catch (e) {
+      console.log('!!!!');
+    }
   };
 
-  return isRegister ? (
-    <RegisterWindow />
-  ) : (
+  return (
     <div className="auth__window">
-      <div className="auth__close">
+      <div className="auth__close" onClick={toHome}>
         <img src={crossImg} className="auth__cross" alt="" />
       </div>
       <h4 className="auth__title">{title}</h4>
@@ -70,7 +67,7 @@ const LoginWindow = ({ title, setRegister, isRegister, switchText, setAuthVisibl
           );
         }}
       </Formik>
-      <p className="auth__window-switch" onClick={setRegister}>
+      <p className="auth__window-switch" onClick={toRegister}>
         {switchText}
       </p>
     </div>

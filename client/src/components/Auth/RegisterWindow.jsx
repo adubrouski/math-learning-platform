@@ -1,13 +1,25 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
-import LoginWindow from './LoginWindow';
+import http from '../../services/httpService';
 
 import crossImg from '../../assets/img/tests/cross.svg';
 
-const RegisterWindow = ({ title, setRegister, isRegister, switchText, setAuthVisible }) => {
+const RegisterWindow = ({ title, switchText }) => {
+  const history = useHistory();
+
+  const toLogin = () => {
+    history.push('/login');
+  };
+
+  const toHome = () => {
+    history.push('/home');
+  };
+
   const initialValues = {
     email: '',
     password: '',
@@ -32,21 +44,17 @@ const RegisterWindow = ({ title, setRegister, isRegister, switchText, setAuthVis
       .required('Это поле обязательно для заполнения'),
   });
 
-  const onSubmit = (e, values) => {
+  const onSubmit = async (e, values) => {
     e.preventDefault();
-    fetch('api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(values),
-    });
-    setAuthVisible(false);
+    http
+      .post('/auth/register', values)
+      .then((resp) => console.log(resp))
+      .catch((e) => toast.error(e.response.data.message));
   };
 
-  return isRegister ? (
+  return (
     <div className="auth__window">
-      <div className="auth__close">
+      <div className="auth__close" onClick={toHome}>
         <img src={crossImg} className="auth__cross" alt="" />
       </div>
       <h4 className="auth__title">{title}</h4>
@@ -76,12 +84,10 @@ const RegisterWindow = ({ title, setRegister, isRegister, switchText, setAuthVis
           );
         }}
       </Formik>
-      <p className="auth__window-switch" onClick={setRegister}>
+      <p className="auth__window-switch" onClick={toLogin}>
         {switchText}
       </p>
     </div>
-  ) : (
-    <LoginWindow />
   );
 };
 
