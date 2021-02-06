@@ -1,23 +1,20 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 
-import http from '../../services/httpService';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { attemptRegister } from '../../redux/thunks/auth';
 
-import crossImg from '../../assets/img/tests/cross.svg';
+import crossIcon from '../../assets/img/tests/cross.svg';
 
-const RegisterWindow = ({ title, switchText }) => {
+const RegisterWindow = ({ title, switchText, toHome }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const toLogin = () => {
     history.push('/login');
-  };
-
-  const toHome = () => {
-    history.push('/home');
   };
 
   const initialValues = {
@@ -27,6 +24,14 @@ const RegisterWindow = ({ title, switchText }) => {
   };
 
   const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, 'Минимальная длина имени - 3 символа')
+      .max(20, 'Максимальная длина имени - 20 символов')
+      .required('Это поле обязательно для заполнения')
+      .matches(
+        /[A-ZА-Я][а-яa-z]/,
+        'Имя должно начинаться с заглавной буквы и может состоять из латинских или русских букв',
+      ),
     email: Yup.string()
       .email('Некорректный email')
       .max(60, 'Максимальная длина Email - 60 символов')
@@ -46,16 +51,13 @@ const RegisterWindow = ({ title, switchText }) => {
 
   const onSubmit = async (e, values) => {
     e.preventDefault();
-    http
-      .post('/auth/register', values)
-      .then((resp) => console.log(resp))
-      .catch((e) => toast.error(e.response.data.message));
+    dispatch(attemptRegister(values, toHome));
   };
 
   return (
     <div className="auth__window">
       <div className="auth__close" onClick={toHome}>
-        <img src={crossImg} className="auth__cross" alt="" />
+        <img src={crossIcon} className="auth__cross" alt="" />
       </div>
       <h4 className="auth__title">{title}</h4>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
@@ -65,6 +67,10 @@ const RegisterWindow = ({ title, switchText }) => {
               action="api/auth/register"
               method="POST"
               onSubmit={(e) => onSubmit(e, obj.values)}>
+              <div className="field-wrapper">
+                <Field name="name" type="text" placeholder="Как вас зовут?" />
+                <ErrorMessage name="name" component="p" className="form-error" />
+              </div>
               <div className="field-wrapper">
                 <Field name="email" type="text" placeholder="Введите email" />
                 <ErrorMessage name="email" component="p" className="form-error" />

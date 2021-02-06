@@ -1,8 +1,13 @@
-export const LOGIN_USER = 'LOGIN_USER';
+const login = (user) => ({
+  type: 'LOGIN_USER',
+  user,
+});
 
-export function login(user) {
+const logout = () => {
+  localStorage.removeItem('token');
   return {
-    type: LOGIN_USER,
-    user,
+    type: 'LOGOUT_USER',
   };
-}
+};
+
+export { login, logout };

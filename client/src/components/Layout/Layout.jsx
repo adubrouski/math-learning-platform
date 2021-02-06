@@ -5,11 +5,11 @@ import { ToastContainer } from 'react-toastify';
 
 const Layout = ({ children }) => {
   return (
-    <div className="wrapper">
+    <>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
+        autoClose={3000}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
           {children}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

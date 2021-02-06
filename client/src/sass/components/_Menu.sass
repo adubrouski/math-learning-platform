@@ -1,5 +1,5 @@
 .menu
-  width: 120px
+  width: 110px
   height: 550px
   display: flex
   flex-direction: column
@@ -60,13 +60,22 @@
     text-align: center
     font-size: 25px
     padding-top: 45px
-  &__auth
+  &__signin
     text-align: center
     font-size: 22px
-    padding-top: 53px
+    margin-top: 53px
     cursor: pointer
     &:hover
       animation: auth .5s
+  &__authorized
+    text-align: center
+    margin-top: 60px
+    font-size: 20px
+    &-auth
+      margin-bottom: 10px
+    &-logout
+      cursor: pointer
+      color:#848484
   &__nav
     display: flex
     flex-direction: column

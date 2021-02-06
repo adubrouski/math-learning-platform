@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import PopUpMenu from './PopUpMenu';
+
+import { useSelector } from 'react-redux';
 
 import {
   logoIcon,
@@ -13,6 +16,7 @@ import {
 
 const Menu = () => {
   const [isPopUpVisible, setPopUpVisible] = React.useState(false);
+  const isAuth = useSelector(({ user }) => user.isAuth);
 
   const iconClickHandler = () => {
     setPopUpVisible(!isPopUpVisible);
@@ -50,17 +54,17 @@ const Menu = () => {
               <img src={homeIcon} alt="icon" />
             </div>
           </Link>
-          <Link to="/classroom">
+          <Link to={isAuth ? `/classroom` : `/login`}>
             <div className="menu__icon">
               <img src={teacherIcon} alt="icon" />
             </div>
           </Link>
-          <Link to="/topics">
+          <Link to={isAuth ? `/topics` : `/login`}>
             <div className="menu__icon">
               <img src={bookIcon} alt="icon" />
             </div>
           </Link>
-          <Link to="/exams">
+          <Link to={isAuth ? `/exams` : `/login`}>
             <div className="menu__icon">
               <img src={clipboardIcon} alt="icon" />
             </div>

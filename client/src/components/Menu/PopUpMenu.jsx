@@ -1,20 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/actions/user';
+
 import DropMenu from './DropMenu';
 
 const PopUpMenu = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { isAuth, user } = useSelector(({ user }) => user);
 
   const toLogin = () => history.push('/login');
 
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <>
       <div className="popup-menu">
         <h5 className="popup-menu__title">Онлайн-школа программирования</h5>
-        <p className="popup-menu__auth" onClick={toLogin}>
-          Войти или зарегистрироваться
-        </p>
+        {!isAuth ? (
+          <p className="popup-menu__signin" onClick={toLogin}>
+            Войти или зарегистрироваться
+          </p>
+        ) : (
+          <div className="popup-menu__authorized">
+            <p className="popup-menu__authorized-auth">Добро пожаловать, {user.username}</p>
+            <p className="popup-menu__authorized-logout" onClick={logoutHandler}>
+              Выйти из аккаунта
+            </p>
+          </div>
+        )}
+
         <ul className="popup-menu__nav">
           <li className="popup-menu__nav-item">
             <Link to="home">Главная</Link>

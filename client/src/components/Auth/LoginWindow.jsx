@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 
-import http from '../../services/httpService';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { attemptLogin } from '../../redux/thunks/auth';
 
-import crossImg from '../../assets/img/tests/cross.svg';
+import crossIcon from '../../assets/img/tests/cross.svg';
 
-const LoginWindow = ({ title, switchText }) => {
+const LoginWindow = ({ title, switchText, toHome }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const toRegister = () => {
     history.push('/register');
-  };
-  const toHome = () => {
-    history.push('/home');
   };
 
   const initialValues = {
@@ -35,17 +35,13 @@ const LoginWindow = ({ title, switchText }) => {
 
   const onSubmit = async (e, values) => {
     e.preventDefault();
-    try {
-      await http.post('/auth/login', values);
-    } catch (e) {
-      console.log('!!!!');
-    }
+    dispatch(attemptLogin(values, toHome));
   };
 
   return (
     <div className="auth__window">
       <div className="auth__close" onClick={toHome}>
-        <img src={crossImg} className="auth__cross" alt="" />
+        <img src={crossIcon} className="auth__cross" alt="" />
       </div>
       <h4 className="auth__title">{title}</h4>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>

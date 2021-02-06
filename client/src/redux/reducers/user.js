@@ -15,13 +15,6 @@ const user = (state = initState, action) => {
         isAuth: false,
         user: null,
       };
-    case 'SET_USER':
-      return {
-        user: action.user,
-        isAuth: true,
-      };
-    case 'RESET_USER':
-      return initState;
     default:
       return state;
   }
