@@ -12,6 +12,17 @@ const Auth = () => {
     history.push('/home');
   };
 
+  const keyDownHandler = (e) => {
+    if (e.key === 'Escape') {
+      toHome();
+      document.removeEventListener('keydown', keyDownHandler);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', keyDownHandler);
+  }, []);
+
   return (
     <div className="auth">
       {history.location.pathname === '/login' ? (

@@ -21,12 +21,13 @@ const Menu = () => {
   const iconClickHandler = () => {
     setPopUpVisible(!isPopUpVisible);
   };
-
+  console.log(isPopUpVisible);
   React.useEffect(() => {
     const foo = (e) => {
       const classes = e.target.classList;
       if (
         !classes.contains('left-menu__icon') &&
+        !classes.contains('menu__icon') &&
         !classes.contains('man-icon') &&
         !classes.contains('popup__menu-auth')
       ) {
