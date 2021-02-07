@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/actions/user';
+import { logoutUser } from '../../redux/thunks/auth';
 
 import DropMenu from './DropMenu';
 
@@ -14,7 +14,8 @@ const PopUpMenu = () => {
   const toLogin = () => history.push('/login');
 
   const logoutHandler = () => {
-    dispatch(logout());
+    dispatch(logoutUser());
+    history.push('/home');
   };
   return (
     <>

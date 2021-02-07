@@ -49,7 +49,7 @@ const Menu = () => {
           <div className="menu__icon" onClick={iconClickHandler}>
             <img src={manIcon} className="man-icon" alt="logo" />
           </div>
-          <Link to="/">
+          <Link to="/home">
             <div className="menu__icon">
               <img src={homeIcon} alt="icon" />
             </div>

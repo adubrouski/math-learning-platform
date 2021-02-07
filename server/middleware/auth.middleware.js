@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const tokenCreator = require('../utils/tokenCreator');
 
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
@@ -9,9 +10,22 @@ const authMiddleware = (req, res, next) => {
   } else {
     jwt.verify(token, config.get('jwt-key'), (err, decoded) => {
       if (err) {
-        res.status(401).json({ message: 'Токен недействителен, авторизуйтесь заново' });
+        jwt.verify(req.signedCookies.hashed, config.get('jwt-key'), (err, decoded) => {
+          if (err) {
+            res.status(401).json({ message: 'Сессия недействительна, авторизуйтесь заново' });
+          } else {
+            const token = tokenCreator.createAccessToken({
+              userId: decoded.userId,
+              username: decoded.username,
+            });
+            req.userData = decoded;
+            req.token = token;
+            next();
+          }
+        });
       } else {
-        req.user = decoded;
+        req.userData = decoded;
+        req.token = token;
         next();
       }
     });

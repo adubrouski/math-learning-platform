@@ -1,10 +1,13 @@
 const express = require('express');
 const config = require('config');
+const cookieParser = require('cookie-parser');
 
 const PORT = config.get('port');
 const MONGO_URI = config.get('db-uri');
 
 const app = express();
+
+app.use(cookieParser('secret key'));
 
 require('./startup/cors')(app);
 require('./startup/db')(MONGO_URI);

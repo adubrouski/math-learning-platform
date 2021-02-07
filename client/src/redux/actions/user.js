@@ -4,7 +4,6 @@ const login = (user) => ({
 });
 
 const logout = () => {
-  localStorage.removeItem('token');
   return {
     type: 'LOGOUT_USER',
   };

@@ -1,28 +1,32 @@
 const { Router } = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 const authMiddleware = require('../middleware/auth.middleware');
+const tokenCreator = require('../utils/tokenCreator');
 
 const router = Router();
 
 router.post('/login', async (req, res) => {
   const candidate = await User.findOne({ email: req.body.email }).exec();
-
   if (!candidate) {
     res.status(404).json({ message: 'Пользователь не найден' });
   } else {
     try {
       if (await bcrypt.compare(req.body.password, candidate.password)) {
         const userData = { userId: candidate._id, username: candidate.username };
-        const token = jwt.sign(
-          {
-            userId: candidate._id,
-          },
-          config.get('jwt-key'),
-          { expiresIn: '1h' },
-        );
+        const token = tokenCreator.createAccessToken({
+          userId: candidate._id,
+          username: candidate.username,
+        });
+        const refreshToken = tokenCreator.createRefreshToken({
+          userId: candidate._id,
+          username: candidate.username,
+        });
+
+        res.cookie('hashed', refreshToken, {
+          httpOnly: true,
+          signed: true,
+        });
         res.status(200).json({ message: 'Вы успешно вошли в профиль', token, userData });
       } else {
         res.status(401).json({ message: 'Неверный пароль' });
@@ -61,20 +65,19 @@ router.post('/register', async (req, res) => {
 
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.userId });
-    const token = jwt.sign({ userId: user._id }, config.get('jwt-key'), {
-      expiresIn: '1h',
-    });
     res.status(200).json({
-      token,
-      userData: {
-        userId: user._id,
-        username: user.username,
-      },
+      message: 'trgr',
+      token: req.token,
+      userData: { username: req.userData.username, userId: req.userData.userId },
     });
   } catch (e) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Что-то пошло не так...' });
   }
+});
+
+router.delete('/logout', (req, res) => {
+  res.clearCookie('hashed');
+  res.json({ message: 'Вы успешно вышли из профиля' });
 });
 
 module.exports = router;

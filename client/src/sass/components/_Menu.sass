@@ -7,6 +7,7 @@
   align-items: center
   border-right: 2px solid grey
   margin: 10px 0
+  user-select: none
   &__logo
     cursor: pointer
     width: 100px
@@ -32,12 +33,12 @@
     &:nth-child(2) 
       margin-bottom: 40px
     img 
-      height: 45px
+      height: 35px
   &-active
     background: #fff
 
 .popup-menu
-  width: 320px
+  width: 280px
   height: 550px
   background-color: #D3FAEE
   position: absolute
@@ -62,8 +63,8 @@
     padding-top: 45px
   &__signin
     text-align: center
-    font-size: 22px
-    margin-top: 53px
+    font-size: 20px
+    margin-top: 65px
     cursor: pointer
     &:hover
       animation: auth .5s
@@ -80,7 +81,7 @@
     display: flex
     flex-direction: column
     width: 100%
-    font-size: 23px
+    font-size: 18px
     list-style: none
     position: absolute
     bottom: 0
@@ -115,7 +116,7 @@
   opacity: 0
   position: absolute
   top: -86px
-  left: 320px
+  left: 280px
   box-shadow: 4px 4px 8px 4px rgba(34, 60, 80, 0.2)
   background-color:  #D3FAEE
   transition: .5s all

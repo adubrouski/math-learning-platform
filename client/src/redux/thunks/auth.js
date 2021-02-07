@@ -1,5 +1,5 @@
-import { postLogin, postRegister, getUser } from '../../api/index';
-import { login } from '../actions/user';
+import { postLogin, postRegister, getUser, deleteCookies } from '../../api/index';
+import { login, logout } from '../actions/user';
 
 import { toast } from 'react-toastify';
 
@@ -44,4 +44,17 @@ const auth = () => {
   };
 };
 
-export { attemptLogin, attemptRegister, auth };
+const logoutUser = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await deleteCookies();
+      localStorage.removeItem('token');
+      dispatch(logout());
+      toast.success(data.message);
+    } catch (e) {
+      toast.error('Что-то пошло не так...');
+    }
+  };
+};
+
+export { attemptLogin, attemptRegister, auth, logoutUser };
