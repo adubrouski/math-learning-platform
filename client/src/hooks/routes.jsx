@@ -1,5 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Home, Topics, Classroom, Exams } from '../pages';
+
 const useRoutes = (authorization) => {
   if (authorization) {
     return (
