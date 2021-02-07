@@ -7,7 +7,7 @@ const MONGO_URI = config.get('db-uri');
 
 const app = express();
 
-app.use(cookieParser('secret key'));
+app.use(cookieParser(config.get('cookie-secret')));
 
 require('./startup/cors')(app);
 require('./startup/db')(MONGO_URI);

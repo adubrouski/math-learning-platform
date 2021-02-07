@@ -1,5 +1,6 @@
 {
   "port": 5000,
   "db-uri": "mongodb+srv://db-owner:Mathplatform321@cluster0.rru3u.mongodb.net/MathPlatform?retryWrites=true&w=majority",
-  "jwt-key": "math-dev"
+  "jwt-key": "math-dev",
+  "cookie-secret": "cookie-key"
 }
