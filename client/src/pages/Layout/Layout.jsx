@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header, Menu } from '../index';
+import { Header, Menu } from '../../components/index';
 import { ToastContainer } from 'react-toastify';
 
 const Layout = ({ children }) => {

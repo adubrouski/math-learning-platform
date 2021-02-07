@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Layout } from './components';
+import { Layout } from './pages';
 import { auth } from './redux/thunks/auth';
 import { useRoutes } from './hooks/routes';
 

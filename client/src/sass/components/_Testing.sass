@@ -1,0 +1,55 @@
+.testing
+  width: 800px
+  height: 375px
+  border-radius: 15px
+  padding: 15px 0
+  background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db)
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
+  &-top
+    position: relative
+    width: 90%
+    p
+      position: absolute
+      top: 0
+      right: 0
+  &__title
+    text-align: center
+    color: #484848
+    font-size: 30px
+  &__answers
+    width: 100%
+    list-style-position: inside
+    &-option
+      padding: 10px 15px
+      color: #484848
+      margin: 0 35px
+      border: 2px solid transparent
+      border-radius: 10px
+      background-color: rgba(0, 0, 0, 0.2)
+      margin-bottom: 10px
+      cursor: pointer
+      &.active
+        background-color: transparent
+        border: 2px solid #808380
+        transition: .3s all
+  &__wrapper
+    width: 90%
+    display: flex
+    justify-content: flex-end
+  &__button
+    padding: 10px 30px
+    outline: none
+    border: none
+    border-radius: 10px
+    background-color: #66a0a6
+    color: #e4e4e4
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
+    cursor: pointer
+    &:disabled
+      cursor: not-allowed
+      background-color: #a67070
