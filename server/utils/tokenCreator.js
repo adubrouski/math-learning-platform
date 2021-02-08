@@ -8,7 +8,7 @@ const createAccessToken = (options) => {
       ...options,
     },
     config.get('jwt-key'),
-    { expiresIn: '15m' },
+    { expiresIn: '30m' },
   );
 };
 

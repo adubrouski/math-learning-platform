@@ -14,13 +14,17 @@ const authMiddleware = (req, res, next) => {
           if (err) {
             res.status(401).json({ message: 'Сессия недействительна, авторизуйтесь заново' });
           } else {
-            const token = tokenCreator.createAccessToken({
-              userId: decoded.userId,
-              username: decoded.username,
-            });
-            req.userData = decoded;
-            req.token = token;
-            next();
+            if (decoded.type === 'Refresh') {
+              const token = tokenCreator.createAccessToken({
+                userId: decoded.userId,
+                username: decoded.username,
+              });
+              req.userData = decoded;
+              req.token = token;
+              next();
+            } else {
+              res.status(401).json({ message: 'Сессия недействительна, авторизуйтесь заново' });
+            }
           }
         });
       } else {

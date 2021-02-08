@@ -3,7 +3,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const authMiddleware = require('../middleware/auth.middleware');
 const tokenCreator = require('../utils/tokenCreator');
-
+const Topics = require('../models/topics');
 const router = Router();
 
 router.post('/login', async (req, res) => {
@@ -24,6 +24,7 @@ router.post('/login', async (req, res) => {
         });
 
         res.cookie('hashed', refreshToken, {
+          maxAge: 3600 * 1000 * 24 * 30,
           httpOnly: true,
           signed: true,
         });
@@ -64,9 +65,13 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/', authMiddleware, async (req, res) => {
+  /* const topics = new Topics({
+    topics: [{ name: 'test', type: 'algebra', markup: '<p>Testttt</p>' }],
+  });
+  await topics.save(); */
   try {
     res.status(200).json({
-      message: 'trgr',
+      message: 'Success',
       token: req.token,
       userData: { username: req.userData.username, userId: req.userData.userId },
     });
