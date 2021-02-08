@@ -1,0 +1,36 @@
+.banner
+  width: 100%
+  height: 170px
+  background-image: url('../../assets/img/home/banner.webp')
+  &:not(:first-child)
+    margin-top: 25px
+  img
+    display: block
+    height: 75%
+    opacity: 0.85
+  h3
+    font-size: 60px
+    text-align: center
+    padding-top: 45px
+    color: #90A278
+  &:first-child
+    position: relative
+    img
+      position: absolute
+      left: 70px
+      bottom: 15px
+      transform: rotateZ(-50deg)
+  &:nth-child(3)
+    position: relative
+    img
+      position: absolute
+      right: 60px
+      bottom: 15px
+      transform: rotateZ(55deg)
+  &:nth-child(5)
+    position: relative
+    img
+      position: absolute
+      left: 75px
+      bottom: 15px
+      transform: rotateZ(-35deg)

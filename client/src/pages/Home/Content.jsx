@@ -1,36 +1,59 @@
 import React from 'react';
 
-import { bannerIcon1, bannerIcon2, bannerIcon3 } from '../../assets/img';
+import { Task, Banner } from '../../components';
 
 const Content = () => {
   return (
     <div className="home__content">
-      <div className="content-banner">
-        <img className="content-img-1" src={bannerIcon1} alt="" />
-        <h3>Решай</h3>
-      </div>
+      <Banner title="Решай" img="https://i.imgur.com/spZCrEw.png" />
       <div className="content-items">
-        <div className="content-card"></div>
-        <div className="content-card"></div>
-        <div className="content-card"></div>
+        <Task title="Какого знака не хватает?" img="https://i.imgur.com/YaeRWul.jpg">
+          <p className="backside__task">4 _ 3 = _</p>
+          <p className="backside__task">6 _ 3 = 3</p>
+          <p className="backside__task">2 _ 4 = 6 </p>
+        </Task>
+        <Task title="А ты сможешь правильно решить пример?" img="https://i.imgur.com/9kX7g67.jpg">
+          <p className="backside__task">8 + 2 (2 + 2)</p>
+        </Task>
+        <Task img="https://i.imgur.com/WawYa96.png">
+          <div className="backside__task">Интересно, сколько же весит арбуз?</div>
+        </Task>
       </div>
-      <div className="content-banner">
-        <img className="content-img-2" src={bannerIcon2} alt="" />
-        <h3>Размышляй</h3>
-      </div>
+      <Banner title="Размышляй" img="https://i.imgur.com/OCkBv38.png" />
       <div className="content-items">
-        <div className="content-card"></div>
-        <div className="content-card"></div>
-        <div className="content-card"></div>
+        <Task img="https://i.imgur.com/vLTX83l.png">
+          <div className="backside__task">Сколько цифр ты видишь здесь?</div>
+        </Task>
+        <Task img="https://i.imgur.com/OyzIkyZ.jpg">
+          <div className="backside__task">
+            Каждый из троих взрослых ведёт за руку двоих детей. Сколько детей идут со всеми
+            взрослыми?
+          </div>
+        </Task>
+        <Task img="https://i.imgur.com/gPM2ukD.jpg">
+          <div className="backside__task">
+            Серёжа покрасил стороны кубика разными красками. Сколько красок для этого потребовалось?
+          </div>
+        </Task>
       </div>
-      <div className="content-banner">
-        <img className="content-img-3" src={bannerIcon3} alt="" />
-        <h3>Развивайся</h3>
-      </div>
+      <Banner title="Развивайся" img="https://i.imgur.com/OhSHqXf.png" />
       <div className="content-items">
-        <div className="content-card"></div>
-        <div className="content-card"></div>
-        <div className="content-card"></div>
+        <Task img="https://i.imgur.com/69P0KyL.jpg">
+          <div className="backside__task">
+            Благодаря математике известно, что галстук можно завязать 177147 способами
+          </div>
+        </Task>
+        <Task img="https://i.imgur.com/Dvco5Ha.jpg">
+          <div className="backside__task">
+            Писатель Льюисс Кэролл, который написал «Алиса в стране чудес», был математиком
+          </div>
+        </Task>
+        <Task img="https://i.imgur.com/d2TSFYs.jpg">
+          <div className="backside__task">
+            Тремя касаниями ножа торт делится на 8 одинаковых частей. И существует только 2 способа
+            для этого
+          </div>
+        </Task>
       </div>
     </div>
   );

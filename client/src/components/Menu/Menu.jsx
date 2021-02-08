@@ -21,7 +21,7 @@ const Menu = () => {
   const iconClickHandler = () => {
     setPopUpVisible(!isPopUpVisible);
   };
-  console.log(isPopUpVisible);
+
   React.useEffect(() => {
     const foo = (e) => {
       const classes = e.target.classList;
