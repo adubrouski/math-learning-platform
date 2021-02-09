@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Home, Topics, Classroom, Exams } from '../pages';
+import { Home, Topics, Classrooms, Exams, Classroom, Topic } from '../pages';
 
 const useRoutes = (authorization) => {
   if (authorization) {
@@ -7,7 +7,9 @@ const useRoutes = (authorization) => {
       <Switch>
         <Route path="/home" exact component={Home} />
         <Route path="/topics" exact component={Topics} />
-        <Route path="/classroom" exact component={Classroom} />
+        <Route path="/topics/topic/:id" exact component={Topic} />
+        <Route path="/classrooms/classroom" exact component={Classroom} />
+        <Route path="/classrooms" exact component={Classrooms} />
         <Route path="/exams" exact component={Exams} />
         <Redirect to="/home" />
       </Switch>
