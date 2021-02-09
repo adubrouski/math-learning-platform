@@ -66,7 +66,35 @@ router.post('/register', async (req, res) => {
 
 router.get('/', authMiddleware, async (req, res) => {
   /* const topics = new Topics({
-    topics: [{ name: 'test', type: 'algebra', markup: '<p>Testttt</p>' }],
+    topics: [
+      { name: 'Какая-то тема по алгебре', type: 'algebra', markup: '<p>Testtе</p>', grade: 2 },
+      { name: 'Алгебра класс', type: 'algebra', markup: '<p>Testtеркtt</p>', grade: 7 },
+      { name: 'Геометрия', type: 'geometry', markup: '<p>Testtрtt</p>', grade: 6 },
+      { name: 'Чёт странное по алгебре', type: 'algebra', markup: '<p>Testttt</p>', grade: 7 },
+      { name: 'Не знаю как назвать тему', type: 'geometry', markup: '<p>Testttt</p>', grade: 2 },
+      { name: 'Теорема Пифагора', type: 'algebra', markup: '<p>Tesиtttt</p>', grade: 5 },
+      { name: 'Теорема Виета', type: 'algebra', markup: '<p>Testttt</p>', grade: 3 },
+      { name: 'Забыл все темы по геометрии', type: 'geometry', markup: '<p>Testttt</p>', grade: 6 },
+      { name: 'Линейные уровнения', type: 'algebra', markup: '<p>Testttt</p>', grade: 6 },
+      {
+        name: 'Я тупенький, не знаю как назвать',
+        type: 'algebra',
+        markup: '<p>Testttt</p>',
+        grade: 7,
+      },
+      { name: 'Окружность', type: 'geometry', markup: '<p>Testеttt</p>', grade: 3 },
+      { name: 'Овал', type: 'geometry', markup: '<p>Testttt</p>', grade: 3 },
+      { name: 'Ещё тема по алгебре', type: 'algebra', markup: '<p>Tesкtttt</p>', grade: 2 },
+      { name: 'Ромб не знаю чё писать', type: 'geometry', markup: '<p>Teпstttt</p>', grade: 3 },
+      { name: '2 + 2 = 22', type: 'algebra', markup: '<p>Testttt</p>', grade: 5 },
+      { name: 'Устал', type: 'algebra', markup: '<p>Testиttt</p>', grade: 4 },
+      { name: 'Тест тест тест', type: 'geometry', markup: '<p>Testttt</p>', grade: 4 },
+      { name: 'Рофлан тест', type: 'algebra', markup: '<p>Testttt</p>', grade: 4 },
+      { name: 'Слишком много алгебры', type: 'algebra', markup: '<p>Testttt</p>', grade: 3 },
+      { name: 'Последняя тема по геометрии', type: 'geometry', markup: '<p>Testttt</p>', grade: 5 },
+      { name: 'Всё ещё алгебра', type: 'algebra', markup: '<p>Testttt</p>', grade: 5 },
+      { name: 'Закончил придумывать', type: 'algebra', markup: '<p>Testttt</p>', grade: 7 },
+    ],
   });
   await topics.save(); */
   try {

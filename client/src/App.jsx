@@ -12,7 +12,7 @@ const App = () => {
 
   React.useEffect(() => {
     dispatch(auth());
-  }, [dispatch]);
+  }, [isAuth]);
 
   return <Layout>{routes}</Layout>;
 };
