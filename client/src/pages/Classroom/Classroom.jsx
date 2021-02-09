@@ -1,18 +1,28 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import TopicsBoard from '../../components/TopicsBoard/TopicsBoard';
+import { fetchTopicsForGrade } from '../../redux/thunks/classroom';
+
+import { loader } from '../../assets/img/index';
+import { TopicsBoard } from '../../components';
 
 const Classroom = () => {
+  const dispatch = useDispatch();
+  const { currentGrade, isLoaded, currentTopics } = useSelector(({ classrooms }) => classrooms);
+
+  React.useEffect(() => {
+    dispatch(fetchTopicsForGrade(currentGrade));
+  }, [currentGrade]);
+
   return (
     <div className="classrooms">
-      <h3 className="classrooms__title">Учебные классы</h3>
+      <h3 className="classrooms__title">{currentGrade} класс</h3>
       <div className="topics-board__wrapper">
-        <TopicsBoard title={'2 класс'} />
-        <TopicsBoard title={'3 класс'} />
-        <TopicsBoard title={'4 класс'} />
-        <TopicsBoard title={'5 класс'} />
-        <TopicsBoard title={'6 класс'} />
-        <TopicsBoard title={'7 класс'} />
+        {isLoaded ? (
+          <TopicsBoard topics={Object.values(currentTopics)} />
+        ) : (
+          <img src={loader} alt="" />
+        )}
       </div>
     </div>
   );
