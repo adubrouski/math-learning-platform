@@ -15,6 +15,10 @@ const topicsSchema = new Schema({
         type: String,
         required: true,
       },
+      grade: {
+        type: Number,
+        required: true,
+      },
     },
   ],
 });
