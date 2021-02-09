@@ -1,20 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const TopicsBoard = ({ title }) => {
+const TopicsBoard = ({ topics, title }) => {
   return (
     <div className="topics-board">
       <h3 className="topics-board-title">{title}</h3>
       <div className="topics-board-card">
         <ul>
-          <li>rеноeg</li>
-          <li>eеноенrh</li>
-          <li>tнеоh</li>
-          <li>rеноенth</li>
-          <li>rоеноth</li>
-          <li>rеноth</li>
-          <li>rеноеноеноth</li>
-          <li>rеноеноеноth</li>
-          <li>rеноеноеноth</li>
+          {topics.map((item) => (
+            <li key={item.id}>
+              <Link to={`/topics/topic/${item.id}`}>{item.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

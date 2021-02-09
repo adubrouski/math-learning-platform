@@ -55,7 +55,7 @@ const Menu = () => {
               <img src={homeIcon} alt="icon" />
             </div>
           </Link>
-          <Link to={isAuth ? `/classroom` : `/login`}>
+          <Link to={isAuth ? `/classrooms` : `/login`}>
             <div className="menu__icon">
               <img src={teacherIcon} alt="icon" />
             </div>

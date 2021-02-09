@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { attemptRegister } from '../../redux/thunks/auth';
 
-import crossIcon from '../../assets/img/tests/cross.svg';
+import { crossIcon } from '../../assets/img';
 
 const RegisterWindow = ({ title, switchText, toHome }) => {
   const dispatch = useDispatch();
