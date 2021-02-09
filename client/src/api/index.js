@@ -8,4 +8,18 @@ const getUser = () =>
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   });
 
-export { postLogin, postRegister, getUser, deleteCookies };
+const getAllTopics = () => http.get('/topics');
+const getTopicsForClassrooms = () => http.get('/classrooms');
+const getGradeTopics = (grade) => http.get(`/classrooms/classroom?grade=${grade}`);
+const getTopic = (id) => http.get(`/topics/topic?id=${id}`);
+
+export {
+  postLogin,
+  postRegister,
+  getUser,
+  deleteCookies,
+  getAllTopics,
+  getTopicsForClassrooms,
+  getGradeTopics,
+  getTopic,
+};
