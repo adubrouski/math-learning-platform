@@ -5,8 +5,8 @@ import teacherIcon from './menu/icons/teacherIcon.svg';
 import clipboardIcon from './menu/icons/tabletIcon.svg';
 import bookIcon from './menu/icons/bookIcon.svg';
 import loader from './loader.svg';
-import tickIcon from './exams/cross.svg';
-import crossIcon from './exams/tick.svg';
+import tickIcon from './exams/tick.svg';
+import crossIcon from './exams/cross.svg';
 
 export {
   logoIcon,
