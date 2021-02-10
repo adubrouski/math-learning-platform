@@ -52,6 +52,7 @@ router.post('/register', async (req, res) => {
         username: req.body.name,
         email: req.body.email,
         password: hashPassword,
+        examsResults: [],
       });
       try {
         await user.save();
@@ -101,14 +102,49 @@ router.get('/', authMiddleware, async (req, res) => {
   /* const exams = new Exams({
     exams: [
       {
-        question: 'Сколько сторон у куба?',
-        answers: ['Одна', 'Две', 'Три', 'Восемь'],
-        rightAnswer: 4,
+        topic: 'Не знаю чё придумать',
+        questions: [
+          {
+            question: 'Сколько сторон у куба?',
+            answers: ['Одна', 'Две', 'Три', 'Восемь'],
+            rightAnswer: 4,
+          },
+          {
+            question: 'Сколько сторон у теугольника?',
+            answers: ['Одна', 'Три', 'Две', 'Четыре'],
+            rightAnswer: 2,
+          },
+        ],
       },
       {
-        question: 'Сколько сторон у теугольника?',
-        answers: ['Одна', 'Три', 'Две', 'Четыре'],
-        rightAnswer: 2,
+        topic: 'Тригонометрия',
+        questions: [
+          {
+            question: 'Сколько сторон у куба?',
+            answers: ['Одна', 'Две', 'Три', 'Восемь'],
+            rightAnswer: 4,
+          },
+          {
+            question: 'Сколько сторон у теугольника?',
+            answers: ['Одна', 'Три', 'Две', 'Четыре'],
+            rightAnswer: 2,
+          },
+        ],
+      },
+      {
+        topic: 'Линейные уравнения',
+        questions: [
+          {
+            question: 'Сколько сторон у куба?',
+            answers: ['Одна', 'Две', 'Три', 'Восемь'],
+            rightAnswer: 4,
+          },
+          {
+            question: 'Сколько сторон у теугольника?',
+            answers: ['Одна', 'Три', 'Две', 'Четыре'],
+            rightAnswer: 2,
+          },
+        ],
       },
     ],
   });
