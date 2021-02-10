@@ -11,6 +11,7 @@ const useRoutes = (authorization) => {
         <Route path="/classrooms/classroom" exact component={Classroom} />
         <Route path="/classrooms" exact component={Classrooms} />
         <Route path="/exams" exact component={Exams} />
+        <Route path="/exams/exam/:id" exact component={Exams} />
         <Redirect to="/home" />
       </Switch>
     );
