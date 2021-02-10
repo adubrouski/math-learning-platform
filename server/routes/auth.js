@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const authMiddleware = require('../middleware/auth.middleware');
 const tokenCreator = require('../utils/tokenCreator');
 const Topics = require('../models/topics');
-const Tests = require('../models/tests');
+const Exams = require('../models/exams');
 const router = Router();
 
 router.post('/login', async (req, res) => {
@@ -98,8 +98,8 @@ router.get('/', authMiddleware, async (req, res) => {
     ],
   });
   await topics.save(); */
-  /* const topics = new Tests({
-    tests: [
+  /* const exams = new Exams({
+    exams: [
       {
         question: 'Сколько сторон у куба?',
         answers: ['Одна', 'Две', 'Три', 'Восемь'],
@@ -108,11 +108,11 @@ router.get('/', authMiddleware, async (req, res) => {
       {
         question: 'Сколько сторон у теугольника?',
         answers: ['Одна', 'Три', 'Две', 'Четыре'],
-        rightAnswer: 4,
+        rightAnswer: 2,
       },
     ],
   });
-  await topics.save(); */
+  await exams.save(); */
   try {
     res.status(200).json({
       message: 'Success',

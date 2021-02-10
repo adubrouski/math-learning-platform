@@ -1,7 +1,7 @@
 const { model, Schema } = require('mongoose');
 
-const testsSchema = new Schema({
-  tests: [
+const examsSchema = new Schema({
+  exams: [
     {
       question: {
         type: String,
@@ -19,4 +19,4 @@ const testsSchema = new Schema({
   ],
 });
 
-module.exports = model('Tests', testsSchema);
+module.exports = model('Exams', examsSchema);
