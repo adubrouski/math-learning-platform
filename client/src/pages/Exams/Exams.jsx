@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { Testing } from '../../components';
+import { Link } from 'react-router-dom';
 
 import { fetchAllExams } from '../../redux/thunks/exams';
 
-const Tests = () => {
+import Exam from '../../containers/Exam';
+import { loader } from '../../assets/img';
+
+const Tests = ({ match }) => {
   const dispatch = useDispatch();
-  const { exams } = useSelector(({ exams }) => exams);
+  const { exams, isLoaded } = useSelector(({ exams }) => exams);
 
   React.useEffect(() => {
     dispatch(fetchAllExams());
@@ -17,15 +19,21 @@ const Tests = () => {
     <div className="exams">
       <h3 className="exams__title">Пройдите тест</h3>
       <div className="exams__content">
-        <ul className="exams__list">
-          {exams &&
-            Object.values(exams).map(({ exam }) => (
-              <li key={exam._id} className="exams__list-item">
-                {exam.question}
-              </li>
-            ))}
-        </ul>
-        {/* <Testing /> */}
+        {!match.params.id ? (
+          <ul className="exams__list">
+            {exams && isLoaded ? (
+              Object.values(exams).map((exam) => (
+                <li onClick={null} key={exam.id} className="exams__list-item">
+                  <Link to={`exams/exam/${exam.id}`}>{exam.topic}</Link>
+                </li>
+              ))
+            ) : (
+              <img src={loader} alt="" />
+            )}
+          </ul>
+        ) : (
+          <Exam id={match.params.id} />
+        )}
       </div>
     </div>
   );

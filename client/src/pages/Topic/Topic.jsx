@@ -9,8 +9,9 @@ import { loader } from '../../assets/img';
 const Topic = ({ match }) => {
   const dispatch = useDispatch();
   const { currentTopic } = useSelector(({ topics }) => topics);
-  console.log(currentTopic);
+
   const parsed = parse(currentTopic !== null ? currentTopic.markup : '');
+
   React.useEffect(() => {
     dispatch(fetchTopicById(match.params.id));
   }, []);
