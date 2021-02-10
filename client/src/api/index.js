@@ -13,6 +13,8 @@ const getTopicsForClassrooms = () => http.get('/classrooms');
 const getGradeTopics = (grade) => http.get(`/classrooms/classroom?grade=${grade}`);
 const getTopic = (id) => http.get(`/topics/topic?id=${id}`);
 
+const getAllExams = () => http.get(`/exams`);
+
 export {
   postLogin,
   postRegister,
@@ -22,4 +24,5 @@ export {
   getTopicsForClassrooms,
   getGradeTopics,
   getTopic,
+  getAllExams,
 };
