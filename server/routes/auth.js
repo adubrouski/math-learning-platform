@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const authMiddleware = require('../middleware/auth.middleware');
 const tokenCreator = require('../utils/tokenCreator');
 const Topics = require('../models/topics');
+const Tests = require('../models/tests');
 const router = Router();
 
 router.post('/login', async (req, res) => {
@@ -94,6 +95,21 @@ router.get('/', authMiddleware, async (req, res) => {
       { name: 'Последняя тема по геометрии', type: 'geometry', markup: '<p>Testttt</p>', grade: 5 },
       { name: 'Всё ещё алгебра', type: 'algebra', markup: '<p>Testttt</p>', grade: 5 },
       { name: 'Закончил придумывать', type: 'algebra', markup: '<p>Testttt</p>', grade: 7 },
+    ],
+  });
+  await topics.save(); */
+  /* const topics = new Tests({
+    tests: [
+      {
+        question: 'Сколько сторон у куба?',
+        answers: ['Одна', 'Две', 'Три', 'Восемь'],
+        rightAnswer: 4,
+      },
+      {
+        question: 'Сколько сторон у теугольника?',
+        answers: ['Одна', 'Три', 'Две', 'Четыре'],
+        rightAnswer: 4,
+      },
     ],
   });
   await topics.save(); */
