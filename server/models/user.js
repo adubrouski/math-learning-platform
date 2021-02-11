@@ -19,4 +19,17 @@ const userSchema = new Schema({
   },
 });
 
+userSchema.methods.addTestResult = function (obj) {
+  const results = [...this.examsResults];
+
+  if (results.some((elem) => elem.examId === obj.examId)) {
+    this.examsResults = results;
+  } else {
+    results.push(obj);
+    this.examsResults = results;
+  }
+
+  return this.save();
+};
+
 module.exports = model('User', userSchema);
