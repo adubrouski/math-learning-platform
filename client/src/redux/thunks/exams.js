@@ -1,6 +1,8 @@
 import { getAllExams, getExamById, postExamResult } from '../../api/index';
 import { setCurrentExam, setExams, clearCurrentExam } from '../actions/exams';
 
+import { toast } from 'react-toastify';
+
 const fetchAllExams = () => async (dispatch) => {
   try {
     const { data } = await getAllExams();
@@ -21,10 +23,10 @@ const fetchExamById = (id) => async (dispatch) => {
   }
 };
 
-const sendExamResult = (obj) => async (dispatch) => {
+const sendExamResult = (obj, userId) => async (dispatch) => {
   try {
-    const { data } = await postExamResult(obj);
-    console.log(data);
+    const { data } = await postExamResult({ ...obj, userId });
+    toast.success(data.message);
     dispatch(clearCurrentExam());
   } catch ({ response }) {
     console.log(response);
