@@ -9,7 +9,7 @@ import DropMenu from './DropMenu';
 const PopUpMenu = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { isAuth, user } = useSelector(({ user }) => user);
+  const { isAuth, userInfo } = useSelector(({ user }) => user);
 
   const toLogin = () => history.push('/login');
 
@@ -27,7 +27,7 @@ const PopUpMenu = () => {
           </p>
         ) : (
           <div className="popup-menu__authorized">
-            <p className="popup-menu__authorized-auth">Добро пожаловать, {user.username}</p>
+            <p className="popup-menu__authorized-auth">Добро пожаловать, {userInfo.username}</p>
             <p className="popup-menu__authorized-logout" onClick={logoutHandler}>
               Выйти из аккаунта
             </p>

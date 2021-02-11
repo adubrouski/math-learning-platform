@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 
-const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer }) => {
+const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, sendResult }) => {
   const history = useHistory();
   const [activeItem, setActiveItem] = React.useState(null);
 
@@ -11,25 +11,29 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer }
 
   const buttonClickHandler = () => {
     increaseCounter();
+
     if (activeItem + 1 === questions[currentQuestion - 1].rightAnswer) {
       addRightAnswer();
-      toast.success('RIGHT');
+      toast.success('Правильный ответ');
     } else {
-      toast.error('WRONG');
+      toast.error('Ответ неверный');
     }
     setActiveItem(null);
-    history.push('/home');
   };
 
   const finishExamHandler = () => {
     increaseCounter();
+
     if (activeItem + 1 === questions[currentQuestion - 1].rightAnswer) {
       addRightAnswer();
-      toast.success('RIGHT');
+      toast.success('Правильный ответ');
     } else {
-      toast.error('WRONG');
+      toast.error('Ответ неверный');
     }
+
+    sendResult(true);
     setActiveItem(null);
+    history.push('/home');
   };
 
   return (
@@ -62,14 +66,14 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer }
             {currentQuestion === questions.length ? (
               <button
                 className="testing__button"
-                onClick={buttonClickHandler}
+                onClick={finishExamHandler}
                 disabled={!activeItem && activeItem !== 0}>
                 Завершить тест
               </button>
             ) : (
               <button
                 className="testing__button"
-                onClick={finishExamHandler}
+                onClick={buttonClickHandler}
                 disabled={!activeItem && activeItem !== 0}>
                 Следующий вопрос
               </button>
