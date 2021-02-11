@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
           httpOnly: true,
           signed: true,
         });
-        res.status(200).json({ message: 'Вы успешно вошли в профиль', token, userData });
+        res.status(200).json({ message: 'Вы успешно вошли в профиль', token, ...userData });
       } else {
         res.status(401).json({ message: 'Неверный пароль' });
       }
