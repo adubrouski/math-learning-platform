@@ -22,8 +22,10 @@ const userSchema = new Schema({
 userSchema.methods.addTestResult = function (obj) {
   const results = [...this.examsResults];
 
-  if (results.some((elem) => elem.examId === obj.examId)) {
-    this.examsResults = results;
+  if (results.some((exam) => exam.examId === obj.examId)) {
+    const filtered = results.filter((item) => item.examId !== obj.examId);
+    filtered.push(obj);
+    this.examsResults = filtered;
   } else {
     results.push(obj);
     this.examsResults = results;
