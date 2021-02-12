@@ -38,8 +38,10 @@ const auth = () => {
       dispatch(login(data.userData));
 
       localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.userData.userId);
     } catch (e) {
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
     }
   };
 };
