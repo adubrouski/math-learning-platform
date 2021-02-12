@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import TopicsBoard from '../../components/TopicsBoard/TopicsBoard';
+import { TopicsBoard, Loader } from '../../components';
 
 import { fetchTopics } from '../../redux/thunks/topics';
-import { loader } from '../../assets/img/index';
 
 const Topics = () => {
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ const Topics = () => {
             <TopicsBoard title={'Геометрия'} topics={topics.geometry} />
           </>
         ) : (
-          <img src={loader} alt="" />
+          <Loader />
         )}
       </div>
     </div>

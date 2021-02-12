@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import TopicsBoard from '../../components/TopicsBoard/TopicsBoard';
+import { TopicsBoard, Loader } from '../../components';
 
-import { loader } from '../../assets/img/index';
 import { fetchClassroomsTopics } from '../../redux/thunks/classroom';
 
 const Classroom = () => {
@@ -32,7 +31,7 @@ const Classroom = () => {
             <TopicsBoard title={'7 класс'} topics={topics.seventhGrade} />
           </>
         ) : (
-          <img src={loader} alt="" />
+          <Loader />
         )}
       </div>
     </div>

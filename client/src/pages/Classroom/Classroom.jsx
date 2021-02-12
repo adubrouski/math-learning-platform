@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTopicsForGrade } from '../../redux/thunks/classroom';
 
-import { loader } from '../../assets/img/index';
-import { TopicsBoard } from '../../components';
+import { TopicsBoard, Loader } from '../../components';
 
 const Classroom = () => {
   const dispatch = useDispatch();
@@ -18,11 +17,7 @@ const Classroom = () => {
     <div className="classrooms">
       <h3 className="classrooms__title">{currentGrade} класс</h3>
       <div className="topics-board__wrapper">
-        {isLoaded ? (
-          <TopicsBoard topics={Object.values(currentTopics)} />
-        ) : (
-          <img src={loader} alt="" />
-        )}
+        {isLoaded ? <TopicsBoard topics={Object.values(currentTopics)} /> : <Loader />}
       </div>
     </div>
   );

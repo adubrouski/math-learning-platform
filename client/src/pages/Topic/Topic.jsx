@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import { fetchTopicById } from '../../redux/thunks/topics';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loader } from '../../assets/img';
+import { Loader } from '../../components';
 
 const Topic = ({ match }) => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Topic = ({ match }) => {
           <div className="topic__content">{parsed}</div>
         </>
       ) : (
-        <img src={loader} alt="" />
+        <Loader />
       )}
     </div>
   );
