@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { attemptLogin } from '../../redux/thunks/auth';
 
 import { crossIcon } from '../../assets/img';
+import { Button } from '../../components';
 
 const LoginWindow = ({ title, switchText, toHome }) => {
   const dispatch = useDispatch();
@@ -56,9 +57,9 @@ const LoginWindow = ({ title, switchText, toHome }) => {
                 <Field name="password" type="password" placeholder="Введите пароль" />
                 <ErrorMessage name="password" component="p" className="form-error" />
               </div>
-              <button type="submit" disabled={!obj.isValid || !obj.dirty}>
+              <Button auth disabled={!obj.isValid || !obj.dirty}>
                 Войти
-              </button>
+              </Button>
             </form>
           );
         }}

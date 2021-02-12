@@ -2,6 +2,8 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 
+import { Button, Loader } from '../../components';
+
 const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, sendResult }) => {
   const history = useHistory();
   const [activeItem, setActiveItem] = React.useState(null);
@@ -22,17 +24,9 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, 
   };
 
   const finishExamHandler = () => {
-    increaseCounter();
-
-    if (activeItem + 1 === questions[currentQuestion - 1].rightAnswer) {
-      addRightAnswer();
-      toast.success('Правильный ответ');
-    } else {
-      toast.error('Ответ неверный');
-    }
-
+    buttonClickHandler();
     sendResult(true);
-    setActiveItem(null);
+
     history.push('/home');
   };
 
@@ -46,7 +40,6 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, 
               {currentQuestion}/{questions.length}
             </p>
           </div>
-
           <ol className="testing__answers">
             {answers.map((item, index) => (
               <li
@@ -61,26 +54,21 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, 
               </li>
             ))}
           </ol>
-
           <div className="testing__wrapper">
             {currentQuestion === questions.length ? (
-              <button
-                className="testing__button"
-                onClick={finishExamHandler}
-                disabled={!activeItem && activeItem !== 0}>
+              <Button exam onClick={finishExamHandler} disabled={!activeItem && activeItem !== 0}>
                 Завершить тест
-              </button>
+              </Button>
             ) : (
-              <button
-                className="testing__button"
-                onClick={buttonClickHandler}
-                disabled={!activeItem && activeItem !== 0}>
+              <Button exam onClick={buttonClickHandler} disabled={!activeItem && activeItem !== 0}>
                 Следующий вопрос
-              </button>
+              </Button>
             )}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

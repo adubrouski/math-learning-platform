@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { attemptRegister } from '../../redux/thunks/auth';
 
 import { crossIcon } from '../../assets/img';
+import { Button } from '../../components';
 
 const RegisterWindow = ({ title, switchText, toHome }) => {
   const dispatch = useDispatch();
@@ -83,9 +84,9 @@ const RegisterWindow = ({ title, switchText, toHome }) => {
                 <Field name="confirmPassword" type="password" placeholder="Подтвердите пароль" />
                 <ErrorMessage name="confirmPassword" component="p" className="form-error" />
               </div>
-              <button type="submit" disabled={!obj.isValid || !obj.dirty}>
+              <Button auth disabled={!obj.isValid || !obj.dirty}>
                 Зарегистрироваться
-              </button>
+              </Button>
             </form>
           );
         }}
