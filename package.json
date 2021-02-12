@@ -19,7 +19,6 @@
   "author": "Anton Dubrouski <adubrouski@yandex.by>",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.6",
     "concurrently": "^5.3.0"
   }
 }
