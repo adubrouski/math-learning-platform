@@ -13,7 +13,10 @@ const getTopicsForClassrooms = () => http.get('/classrooms');
 const getGradeTopics = (grade) => http.get(`/classrooms/classroom?grade=${grade}`);
 const getTopic = (id) => http.get(`/topics/topic?id=${id}`);
 
-const getAllExams = () => http.get(`/exams`);
+const getAllExams = () =>
+  http.get(`/exams`, {
+    headers: { UserId: localStorage.getItem('userId') },
+  });
 const getExamById = (id) => http.get(`/exams/exam?id=${id}`);
 const postExamResult = (obj) => http.post(`/exams`, obj);
 
