@@ -6,10 +6,12 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   const exams = await Exams.find().exec();
+  const user = await User.findOne({ _id: req.headers.userid }).exec();
 
   const normalizeExams = exams[0].exams.map(({ _id, topic }) => ({
     id: _id,
     topic,
+    isPassed: user.examsResults.filter((result) => result.examId == _id),
   }));
 
   res.status(200).json({ ...normalizeExams });
