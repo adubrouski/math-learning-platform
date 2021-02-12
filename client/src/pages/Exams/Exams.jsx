@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { fetchAllExams } from '../../redux/thunks/exams';
 
@@ -23,7 +24,14 @@ const Tests = ({ match }) => {
           <ul className="exams__list">
             {exams && isLoaded ? (
               Object.values(exams).map((exam) => (
-                <li onClick={null} key={exam.id} className="exams__list-item">
+                <li
+                  onClick={null}
+                  key={exam.id}
+                  className={classNames('exams__list-item', {
+                    exams__tick: exam.isPassed.length !== 0 && exam.isPassed[0].isPassed,
+                    '': exam.isPassed.length === 0,
+                    exams__cross: exam.isPassed.length !== 0 && exam.isPassed[0].isPassed === false,
+                  })}>
                   <Link to={`exams/exam/${exam.id}`}>{exam.topic}</Link>
                 </li>
               ))
