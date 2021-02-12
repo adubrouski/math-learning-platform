@@ -25,7 +25,7 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, 
 
   const finishExamHandler = () => {
     buttonClickHandler();
-    sendResult(true);
+    sendResult(false);
 
     history.push('/home');
   };
