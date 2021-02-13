@@ -4,7 +4,14 @@ import { useHistory } from 'react-router-dom';
 
 import { Button, Loader } from '../../components';
 
-const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, sendResult }) => {
+const Testing = ({
+  questions,
+  currentQuestion,
+  increaseCounter,
+  addRightAnswer,
+  sendResult,
+  rightAnswers,
+}) => {
   const history = useHistory();
   const [activeItem, setActiveItem] = React.useState(null);
 
@@ -15,17 +22,21 @@ const Testing = ({ questions, currentQuestion, increaseCounter, addRightAnswer, 
     increaseCounter();
 
     if (activeItem + 1 === questions[currentQuestion - 1].rightAnswer) {
-      addRightAnswer();
       toast.success('Правильный ответ');
+      const currentRightCounter = addRightAnswer(rightAnswers);
+      setActiveItem(null);
+      return currentRightCounter;
     } else {
       toast.error('Ответ неверный');
+      setActiveItem(null);
+      return rightAnswers;
     }
-    setActiveItem(null);
   };
 
   const finishExamHandler = () => {
-    buttonClickHandler();
-    sendResult(false);
+    const rightCounter = buttonClickHandler();
+    console.log(rightCounter);
+    sendResult(rightCounter / questions.length > 0.5 ? true : false);
 
     history.push('/home');
   };
