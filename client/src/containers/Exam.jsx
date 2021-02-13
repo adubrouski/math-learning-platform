@@ -13,7 +13,11 @@ const Exam = ({ id }) => {
   }));
 
   const increaseCounter = () => dispatch(increase());
-  const addRightAnswer = () => dispatch(increaseRightAnswer());
+  const addRightAnswer = (rightAnswers) => {
+    dispatch(increaseRightAnswer());
+    return ++rightAnswers;
+  };
+
   const sendResult = (isPassed) =>
     dispatch(sendExamResult({ examId: exams.currentExam.id, isPassed }, user.userInfo.userId));
 
