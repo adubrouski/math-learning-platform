@@ -19,6 +19,7 @@ const RegisterWindow = ({ title, switchText, toHome }) => {
   };
 
   const initialValues = {
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
