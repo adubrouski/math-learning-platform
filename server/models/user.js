@@ -19,15 +19,23 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.methods.addTestResult = function (obj) {
+userSchema.methods.addTestResult = function (result) {
   const results = [...this.examsResults];
 
-  if (results.some((exam) => exam.examId === obj.examId)) {
-    const filtered = results.filter((item) => item.examId !== obj.examId);
-    filtered.push(obj);
-    this.examsResults = filtered;
+  if (results.some((exam) => exam.examId === result.examId)) {
+    const isPassMatch =
+      results.filter((item) => item.examId === result.examId)[0].isPassed === true;
+
+    if (isPassMatch) {
+      this.examsResults = results;
+    } else {
+      const filtered = results.filter((item) => item.examId !== result.examId);
+
+      filtered.push(result);
+      this.examsResults = filtered;
+    }
   } else {
-    results.push(obj);
+    results.push(result);
     this.examsResults = results;
   }
 
