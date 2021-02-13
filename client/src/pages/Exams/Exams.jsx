@@ -29,7 +29,7 @@ const Tests = ({ match }) => {
                   key={exam.id}
                   className={classNames('exams__list-item', {
                     exams__tick: exam.isPassed.length !== 0 && exam.isPassed[0].isPassed,
-                    '': exam.isPassed.length === 0,
+                    exams__question: exam.isPassed.length === 0,
                     exams__cross: exam.isPassed.length !== 0 && exam.isPassed[0].isPassed === false,
                   })}>
                   <Link to={`exams/exam/${exam.id}`}>{exam.topic}</Link>
