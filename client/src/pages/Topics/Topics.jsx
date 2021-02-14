@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './Topics.sass';
+
 import { TopicsBoard, Loader } from '../../components';
 
 import { fetchTopics } from '../../redux/thunks/topics';

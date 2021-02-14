@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './TopicsBoard.sass';
+
 const TopicsBoard = ({ topics, title }) => {
   return (
     <div className="topics-board">

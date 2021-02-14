@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Banner.sass';
+
 const Banner = ({ img, title }) => {
   return (
     <div className="banner">

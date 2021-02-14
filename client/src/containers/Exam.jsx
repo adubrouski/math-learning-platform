@@ -5,7 +5,7 @@ import { fetchExamById, sendExamResult } from '../redux/thunks/exams';
 import { increase, increaseRightAnswer } from '../redux/actions/exams';
 import { Testing } from '../components';
 
-const Exam = ({ id }) => {
+const Exam = ({ match }) => {
   const dispatch = useDispatch();
   const { exams, user } = useSelector(({ exams, user }) => ({
     exams,
@@ -22,18 +22,16 @@ const Exam = ({ id }) => {
     dispatch(sendExamResult({ examId: exams.currentExam.id, isPassed }, user.userInfo.userId));
 
   React.useEffect(() => {
-    dispatch(fetchExamById(id));
+    dispatch(fetchExamById(match.params.id));
   }, []);
 
   return (
-    <div>
-      <Testing
-        {...exams.currentExam}
-        increaseCounter={increaseCounter}
-        addRightAnswer={addRightAnswer}
-        sendResult={sendResult}
-      />
-    </div>
+    <Testing
+      {...exams.currentExam}
+      increaseCounter={increaseCounter}
+      addRightAnswer={addRightAnswer}
+      sendResult={sendResult}
+    />
   );
 };
 

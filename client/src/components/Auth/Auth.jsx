@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 
+import './Auth.sass';
+
 import LoginWindow from './LoginWindow';
 import RegisterWindow from './RegisterWindow';
 

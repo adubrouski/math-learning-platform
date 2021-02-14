@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import './Home.sass';
+
 import { Auth, Banner, Task } from '../../components';
 
 const Home = () => {

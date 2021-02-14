@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './Classrooms.sass';
+
 import { TopicsBoard, Loader } from '../../components';
 
 import { fetchClassroomsTopics } from '../../redux/thunks/classroom';

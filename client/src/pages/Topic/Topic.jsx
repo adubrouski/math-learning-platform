@@ -1,6 +1,8 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
+import './Topic.sass';
+
 import { fetchTopicById } from '../../redux/thunks/topics';
 import { useDispatch, useSelector } from 'react-redux';
 

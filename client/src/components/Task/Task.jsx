@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Task.sass';
+
 const Task = ({ children, title, img }) => {
   return (
     <div className="task">

@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import './Button.sass';
+
 const Button = ({ children, onClick, disabled, exam, auth }) => {
   return (
     <button
