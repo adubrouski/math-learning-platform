@@ -51,6 +51,7 @@ const logoutUser = () => {
     try {
       const { data } = await deleteCookies();
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
       dispatch(logout());
       toast.success(data.message);
     } catch (e) {
