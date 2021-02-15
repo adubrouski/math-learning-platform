@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+
+require('dotenv').config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const createAccessToken = (options) => {
   return jwt.sign(
@@ -7,8 +10,8 @@ const createAccessToken = (options) => {
       type: 'Access',
       ...options,
     },
-    config.get('jwt-key'),
-    { expiresIn: '30m' },
+    JWT_SECRET,
+    { expiresIn: '15m' },
   );
 };
 
@@ -18,7 +21,7 @@ const createRefreshToken = (options) => {
       type: 'Refresh',
       ...options,
     },
-    config.get('jwt-key'),
+    JWT_SECRET,
     { expiresIn: '30d' },
   );
 };
