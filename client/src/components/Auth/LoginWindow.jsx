@@ -13,6 +13,7 @@ import { Button } from '../../components';
 const LoginWindow = ({ title, switchText, toHome }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [isButtonDisabled, setButtonDisabled] = React.useState(false);
 
   const toRegister = () => {
     history.push('/register');
@@ -36,6 +37,8 @@ const LoginWindow = ({ title, switchText, toHome }) => {
 
   const onSubmit = async (e, values) => {
     e.preventDefault();
+    setButtonDisabled(true);
+    setTimeout(() => setButtonDisabled(false), 3500);
     dispatch(attemptLogin(values, toHome));
   };
 
@@ -57,7 +60,7 @@ const LoginWindow = ({ title, switchText, toHome }) => {
                 <Field name="password" type="password" placeholder="Введите пароль" />
                 <ErrorMessage name="password" component="p" className="form-error" />
               </div>
-              <Button auth disabled={!obj.isValid || !obj.dirty}>
+              <Button auth disabled={!obj.isValid || !obj.dirty || isButtonDisabled}>
                 Войти
               </Button>
             </form>

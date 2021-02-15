@@ -13,6 +13,7 @@ import { Button } from '../../components';
 const RegisterWindow = ({ title, switchText, toHome }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [isButtonDisabled, setButtonDisabled] = React.useState(false);
 
   const toLogin = () => {
     history.push('/login');
@@ -53,6 +54,8 @@ const RegisterWindow = ({ title, switchText, toHome }) => {
 
   const onSubmit = async (e, values) => {
     e.preventDefault();
+    setButtonDisabled(true);
+    setTimeout(() => setButtonDisabled(false), 3500);
     dispatch(attemptRegister(values, toHome));
   };
 
@@ -85,7 +88,7 @@ const RegisterWindow = ({ title, switchText, toHome }) => {
                 <Field name="confirmPassword" type="password" placeholder="Подтвердите пароль" />
                 <ErrorMessage name="confirmPassword" component="p" className="form-error" />
               </div>
-              <Button auth disabled={!obj.isValid || !obj.dirty}>
+              <Button auth disabled={!obj.isValid || !obj.dirty || isButtonDisabled}>
                 Зарегистрироваться
               </Button>
             </form>
