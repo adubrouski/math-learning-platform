@@ -1,31 +1,39 @@
 import { postLogin, postRegister, getUser, deleteCookies } from '../../api/index';
-import { login, logout } from '../actions/user';
+import { login, logout, setLoading } from '../actions/user';
 
 import { toast } from 'react-toastify';
 
 const attemptLogin = (candidate, redirect) => async (dispatch) => {
   try {
+    dispatch(setLoading(false));
+
     const { data } = await postLogin(candidate);
 
     dispatch(login(data.userData));
+    dispatch(setLoading(true));
 
     toast.success(data.message);
     localStorage.setItem('token', data.token);
 
     redirect();
   } catch ({ response }) {
+    dispatch(setLoading(true));
     toast.error(response.data.message);
   }
 };
 
-const attemptRegister = (candidate, redirect) => async () => {
+const attemptRegister = (candidate, redirect) => async (dispatch) => {
   try {
+    dispatch(setLoading(false));
+
     const { data } = await postRegister(candidate);
 
+    dispatch(setLoading(true));
     toast.success(data.message);
 
     redirect();
   } catch ({ response }) {
+    dispatch(setLoading(true));
     toast.error(response.data.message);
   }
 };

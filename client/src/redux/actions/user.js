@@ -3,10 +3,15 @@ const login = (user) => ({
   user,
 });
 
+const setLoading = (status) => ({
+  type: 'SET_LOADING',
+  status,
+});
+
 const logout = () => {
   return {
     type: 'LOGOUT_USER',
   };
 };
 
-export { login, logout };
+export { login, logout, setLoading };
