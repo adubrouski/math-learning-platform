@@ -2,6 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import parse from 'html-react-parser';
+
 import './Testing.sass';
 
 import { Button, Loader } from '../../components';
@@ -26,19 +27,20 @@ const Testing = ({
 
     if (activeItem + 1 === questions[currentQuestion - 1].rightAnswer) {
       toast.success('Правильный ответ');
-      const currentRightCounter = addRightAnswer(rightAnswers);
       setActiveItem(null);
-      return currentRightCounter;
+
+      return addRightAnswer(rightAnswers);
     } else {
       toast.error('Ответ неверный');
       setActiveItem(null);
+
       return rightAnswers;
     }
   };
 
   const finishExamHandler = () => {
     const rightCounter = buttonClickHandler();
-    console.log(rightCounter);
+
     sendResult(rightCounter / questions.length > 0.5 ? true : false);
 
     history.push('/exams');

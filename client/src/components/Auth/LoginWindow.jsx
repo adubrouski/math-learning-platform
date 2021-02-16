@@ -10,10 +10,9 @@ import { attemptLogin } from '../../redux/thunks/auth';
 import { crossIcon } from '../../assets/img';
 import { Button } from '../../components';
 
-const LoginWindow = ({ title, switchText, toHome }) => {
+const LoginWindow = ({ title, switchText, toHome, isLoading }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [isButtonDisabled, setButtonDisabled] = React.useState(false);
 
   const toRegister = () => {
     history.push('/register');
@@ -35,10 +34,9 @@ const LoginWindow = ({ title, switchText, toHome }) => {
       .required('Это поле обязательно для заполнения'),
   });
 
-  const onSubmit = async (e, values) => {
+  const onSubmit = (e, values) => {
     e.preventDefault();
-    setButtonDisabled(true);
-    setTimeout(() => setButtonDisabled(false), 3500);
+
     dispatch(attemptLogin(values, toHome));
   };
 
@@ -60,7 +58,7 @@ const LoginWindow = ({ title, switchText, toHome }) => {
                 <Field name="password" type="password" placeholder="Введите пароль" />
                 <ErrorMessage name="password" component="p" className="form-error" />
               </div>
-              <Button auth disabled={!obj.isValid || !obj.dirty || isButtonDisabled}>
+              <Button auth disabled={!obj.isValid || !obj.dirty || !isLoading}>
                 Войти
               </Button>
             </form>
