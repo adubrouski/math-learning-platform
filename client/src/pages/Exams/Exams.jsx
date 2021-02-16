@@ -6,10 +6,9 @@ import classNames from 'classnames';
 import './Exams.sass';
 
 import { fetchAllExams } from '../../redux/thunks/exams';
-
 import { loader } from '../../assets/img';
 
-const Exams = ({ match }) => {
+const Exams = () => {
   const dispatch = useDispatch();
   const { exams, isLoaded } = useSelector(({ exams }) => exams);
 
