@@ -5,7 +5,7 @@
   "description": "Online math learning using MERN stack",
   "main": "index.js",
   "scripts": {
-    "client": "npm run start --prefix client",
+    "client": "npm run dev --prefix client",
     "server": "npm run server --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
