@@ -23,13 +23,15 @@ const Home = () => {
           <Task title="А ты сможешь правильно решить пример?" img="https://i.imgur.com/9kX7g67.jpg">
             <p className="backside__task">8 + 2 (2 + 2)</p>
           </Task>
-          <Task img="https://i.imgur.com/WawYa96.png">
-            <div className="backside__task">Интересно, сколько же весит арбуз?</div>
+          <Task img="https://i.imgur.com/GgfyVGz.jpg">
+            <div className="backside__task">
+              Как получить 100 из четырёх девяток с помощью математических действий?
+            </div>
           </Task>
         </div>
         <Banner title="Размышляй" img="https://i.imgur.com/OCkBv38.png" />
         <div className="content-items">
-          <Task img="https://i.imgur.com/vLTX83l.png">
+          <Task img="https://i.imgur.com/OiQOczy.jpg">
             <div className="backside__task">Сколько цифр ты видишь здесь?</div>
           </Task>
           <Task img="https://i.imgur.com/OyzIkyZ.jpg">
